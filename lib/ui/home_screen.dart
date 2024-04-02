@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   static const route = "Home screen";
 
-  HomeScreen({super.key});
+   HomeScreen({super.key});
 
    List<Widget> tabsList=[
      const HomeTab(),
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         icon: SvgPicture.asset(
           svgUrl,
-          width:width*0.04 ,
+          width:width*0.06 ,
           colorFilter: ColorFilter.mode(
             homeScreenProvider.currentBottomNavBarItem==index
                 ?Theme.of(context).colorScheme.secondary

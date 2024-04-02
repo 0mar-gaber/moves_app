@@ -13,15 +13,16 @@ class SlideComponent extends StatelessWidget {
       decoration: const BoxDecoration(),
       child: Stack(alignment: Alignment.bottomLeft, children: [
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image(
               image: const AssetImage("asset/image/casing.jpg"),
-              fit: BoxFit.fitWidth,
+              height: height*0.3,
+              fit: BoxFit.cover,
               width: width,
             ),
             Container(
-              margin: EdgeInsets.only(top: height * 0.014, right: width * 0.1),
+              margin: EdgeInsets.only(top: height * 0.014, left: width * 0.15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -30,11 +31,12 @@ class SlideComponent extends StatelessWidget {
                     style:
                         TextStyle(color: Colors.white, fontSize: width * 0.025),
                   ),
+                  SizedBox(height: height*0.006,),
                   Text(
                     "2019  PG-13  2h 7m",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.onBackground,
-                        fontSize: width * 0.015),
+                        fontSize: width * 0.02),
                   ),
                 ],
               ),
@@ -42,7 +44,7 @@ class SlideComponent extends StatelessWidget {
           ],
         ),
         Container(
-            margin: EdgeInsets.only(left: width * 0.09),
+            margin: EdgeInsets.only(left: width * 0.04),
             child: Stack(children: [
               Image(
                 image: const AssetImage(
@@ -59,7 +61,7 @@ class SlideComponent extends StatelessWidget {
                   alignment: Alignment.center,
                     children:[
                       SvgPicture.asset("asset/icons/add_to_watch_list.svg", width: width*0.05,),
-                      const Icon(Icons.add,color: Colors.white,)
+                      Icon(Icons.add,color: Colors.white,size: width*0.03,)
                     ]
                 ),
               )

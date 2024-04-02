@@ -10,7 +10,8 @@ class AppTheme{
       secondary: AppColors.secondaryColor,
       onPrimaryContainer: AppColors.unselectedIconColor,
       primaryContainer: AppColors.bottomNavigationBarColor,
-      onBackground:AppColors.onBackGroundColor
+      onBackground:AppColors.onBackGroundColor,
+      onSurfaceVariant: AppColors.sliderBackGroundColor
 
 
 
@@ -25,7 +26,9 @@ class AppTheme{
       unselectedItemColor: AppColors.unselectedIconColor,
       backgroundColor: AppColors.bottomNavigationBarColor,
     ),
-
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    hoverColor: Colors.transparent,
 
   );
 
