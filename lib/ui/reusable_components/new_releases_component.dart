@@ -10,11 +10,14 @@ class NewReleasesComponent extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.all(width*0.009),
-      child: Stack(children: [
+      child: Stack(
+          children: [
         Image(
           image: const AssetImage(
             "asset/image/move_casing.png",
+
           ),
+
           height: height * 0.23,
           fit: BoxFit.fitHeight,
         ),
