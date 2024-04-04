@@ -26,7 +26,7 @@ class SearchTab extends StatelessWidget {
       },
         decoration: InputDecoration(
           hintText: "   search...",
-          hintStyle: TextStyle(color: Color(0xffFFFFFF)),
+          hintStyle: TextStyle(color: Color(0xffFFFFFF),fontSize: height*0.024),
           filled: true,
           fillColor: Color(0xff514F4F),
           prefixIcon: Icon(Icons.search),
@@ -44,8 +44,13 @@ class SearchTab extends StatelessWidget {
     Column(
 
       children: [
-        Image.asset("asset/image/Icon material-local-movies.png"),
-      Text("No Movies Found",style: TextStyle(color: Colors. white24)),
+        Image.asset("asset/image/Icon material-local-movies.png"
+        ,height: height*0.19,
+          fit: BoxFit.contain,
+          width: width,
+
+        ),
+      Text("No Movies Found",style: TextStyle(color: Colors. white24,fontSize: height*0.024),),
     ],),
   ],
 

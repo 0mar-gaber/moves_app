@@ -19,7 +19,10 @@ class SlideComponentDetails extends StatelessWidget {
         Stack(
           alignment: Alignment.center,
           children: [
-            Image.asset("asset/image/casing.jpg"),
+            Image.asset("asset/image/casing.jpg",
+              height: height*0.3,
+              fit: BoxFit.cover,
+              width: width,     ),
             IconButton(onPressed:  (){},
                 icon: Icon(Icons.play_circle,color: Colors.white,size: 60,) )
           ],
