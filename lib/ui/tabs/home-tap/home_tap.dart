@@ -3,6 +3,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:moves_app/ui/reusable_components/new_releases_component.dart';
 import 'package:moves_app/ui/reusable_components/recommended_component.dart';
 import 'package:moves_app/ui/reusable_components/slide_component.dart';
+import 'package:moves_app/ui/tabs/home-tap/movie_details.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -14,18 +15,23 @@ class HomeTab extends StatelessWidget {
     return ListView(
       children:[ Column(
         children: [
-          ImageSlideshow(
-            height: height*0.39,
-            isLoop: true,
-            indicatorColor: Colors.transparent,
-            indicatorBackgroundColor: Colors.transparent,
-            autoPlayInterval: 3000,
-            initialPage: 0,
-            children: const [
-              SlideComponent(),
-              SlideComponent(),
-              SlideComponent(),
-            ],
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, MovieDetails.routeName);
+            },
+            child: ImageSlideshow(
+              height: height*0.39,
+              isLoop: true,
+              indicatorColor: Colors.transparent,
+              indicatorBackgroundColor: Colors.transparent,
+              autoPlayInterval: 3000,
+              initialPage: 0,
+              children: const [
+                SlideComponent(),
+                SlideComponent(),
+                SlideComponent(),
+              ],
+            ),
           ),
           SizedBox(
             height: height * 0.03,
