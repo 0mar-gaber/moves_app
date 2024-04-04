@@ -17,4 +17,11 @@ class HomeScreenProvider extends ChangeNotifier{
     }
   }
 
+  String search="";
+  changeSearch(String newSearch){
+    if(search==newSearch)return;
+    search=newSearch;
+    notifyListeners();
+  }
+
 }
