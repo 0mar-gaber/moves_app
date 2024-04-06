@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_colors.dart';
+import '../../../core/utils/colors.dart';
+
 
 class HomeScreenProvider extends ChangeNotifier{
   int currentBottomNavBarItem = 0 ;

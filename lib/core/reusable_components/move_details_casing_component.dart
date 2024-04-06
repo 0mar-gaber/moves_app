@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MovieDetailsCasing extends StatelessWidget {
   const MovieDetailsCasing({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.height;
+
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,18 +16,21 @@ class MovieDetailsCasing extends StatelessWidget {
           children: [
             Image.asset(
               "asset/image/casing.jpg",
-              height: height * 0.3,
+              height: 217.h,
               fit: BoxFit.cover,
-              width: width,
+              width: 412.w,
             ),
             IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.play_circle,
-                    color: Colors.white, size: width * 0.1))
+                    color: Colors.white, size: 60.sp))
           ],
         ),
         Container(
-          margin: EdgeInsets.all(width * 0.017),
+          margin: REdgeInsets.only(
+            top: 13,
+            left: 22,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -36,15 +39,17 @@ class MovieDetailsCasing extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
-                    fontSize: width * 0.03),
+                    fontSize: 18.sp
+                ),
               ),
-              SizedBox(height: height * 0.01),
+              SizedBox(height: 8.h),
               Text(
                 "2019  PG-13  2h 7m",
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w200,
-                    fontSize: width * 0.016),
+                    fontSize: 10.sp
+                ),
               ),
             ],
           ),

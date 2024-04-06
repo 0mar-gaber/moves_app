@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moves_app/shared/home_screen_provider.dart';
-import 'package:moves_app/ui/tabs/browse_tap.dart';
-import 'package:moves_app/ui/tabs/home_tap.dart';
-import 'package:moves_app/ui/tabs/search_tap.dart';
-import 'package:moves_app/ui/tabs/watch_list_tab.dart';
+import 'package:moves_app/presentation/screens/home/home_screen_provider.dart';
+import 'package:moves_app/presentation/screens/home/tabs/browse_tap.dart';
+import 'package:moves_app/presentation/screens/home/tabs/home_tap.dart';
+import 'package:moves_app/presentation/screens/home/tabs/search_tap.dart';
+import 'package:moves_app/presentation/screens/home/tabs/watch_list_tab.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
 
    List<Widget> tabsList=[
      const HomeTab(),
-      SearchTab(),
+      const SearchTab(),
      const BrowseTab(),
      const WatchListTab()
    ];
@@ -22,8 +23,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeScreenProvider homeScreenProvider = Provider.of<HomeScreenProvider>(context);
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: tabsList[homeScreenProvider.currentBottomNavBarItem],
       bottomNavigationBar: Container(
@@ -34,16 +34,16 @@ class HomeScreen extends StatelessWidget {
         ),
         child: BottomNavigationBar(
           elevation: 10,
-          selectedFontSize: width*0.02,
-          unselectedFontSize: width*0.02,
+          selectedFontSize: 8.sp,
+          unselectedFontSize: 8.sp,
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           fixedColor: homeScreenProvider.bottomNavBarItemColor,
           items: [
-            bottomNavigationBarItem("asset/icons/Home icon.svg", "Home", context, 0,width),
-            bottomNavigationBarItem("asset/icons/Search.svg", "Search", context, 1,width),
-            bottomNavigationBarItem("asset/icons/Browse.svg", "Browse", context, 2,width),
-            bottomNavigationBarItem("asset/icons/watch_list_icon.svg", "Watch List", context, 3,width),
+            bottomNavigationBarItem("asset/icons/Home icon.svg", "Home", context, 0,25.45,20.25),
+            bottomNavigationBarItem("asset/icons/Search.svg", "Search", context, 1,19.55,20.25),
+            bottomNavigationBarItem("asset/icons/Browse.svg", "Browse", context, 2,26.13,21.25),
+            bottomNavigationBarItem("asset/icons/watch_list_icon.svg", "Watch List", context, 3,17.67,22.16),
            ],
           onTap: (index) {
             homeScreenProvider.changeSelectedItem(index);
@@ -55,14 +55,15 @@ class HomeScreen extends StatelessWidget {
   }
 
 
-  bottomNavigationBarItem(String svgUrl,String lapel,BuildContext context,int index , double width){
+  bottomNavigationBarItem(String svgUrl,String lapel,BuildContext context,int index , double width,double height){
     HomeScreenProvider homeScreenProvider = Provider.of<HomeScreenProvider>(context,listen: false);
 
     BottomNavigationBarItem bottomNavigationBarItem = BottomNavigationBarItem(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         icon: SvgPicture.asset(
           svgUrl,
-          width:width*0.06 ,
+          width:width.w,
+          height: height.h,
           colorFilter: ColorFilter.mode(
             homeScreenProvider.currentBottomNavBarItem==index
                 ?Theme.of(context).colorScheme.secondary

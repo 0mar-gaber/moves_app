@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:moves_app/ui/screens/category_screen.dart';
-import '../reusable_components/category_component.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/reusable_components/category_component.dart';
+import '../../category_screen/category_screen.dart';
 
 class BrowseTab extends StatelessWidget {
   const BrowseTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: height*0.05,),
-
         Container(
-            margin: EdgeInsets.only(
-                left: width*0.02
+            margin: REdgeInsets.only(
+                left: 17,
+                top:77.49
             ),
-            child: Text("Browse Category", style: TextStyle(color: Colors.white,fontSize: width*0.04,fontWeight: FontWeight.w400))),
+            child: Text("Browse Category", style: TextStyle(color: Colors.white,fontSize: 22.sp,fontWeight: FontWeight.w400))),
         Expanded(
           child: Container(
-            margin: EdgeInsets.only(
-              left: width*0.03,
-              right: width*0.03,
+            margin: REdgeInsets.only(
+              top: 19.51,
+              left: 17 ,
+              right: 33,
             ),
             child: GridView.builder(
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing:width*0.05,
-                mainAxisSpacing: height*0.025,
+                crossAxisSpacing:38.w,
+                mainAxisSpacing: 47.h,
                 childAspectRatio: 1.9,
               ),
 

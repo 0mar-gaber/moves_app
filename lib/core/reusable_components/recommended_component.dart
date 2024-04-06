@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class RecommendedComponent extends StatelessWidget {
@@ -6,12 +7,12 @@ class RecommendedComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return Container(
+      width: 97.w,
+      height: 184.h,
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(4).w,
           boxShadow:  [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
@@ -20,7 +21,6 @@ class RecommendedComponent extends StatelessWidget {
             ),
           ]
       ),
-      margin: EdgeInsets.all(width * 0.01),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,9 +29,9 @@ class RecommendedComponent extends StatelessWidget {
               image: const AssetImage(
                 "asset/image/move_casing.png",
               ),
-              height: height * 0.23,
-              width: width*0.31,
-              fit: BoxFit.fitWidth,
+              height: 127.74.h,
+              width: 96.87.w,
+              fit: BoxFit.fill,
             ),
             InkWell(
               onTap: () {
@@ -40,34 +40,39 @@ class RecommendedComponent extends StatelessWidget {
               child: Stack(alignment: Alignment.center, children: [
                 SvgPicture.asset(
                   "asset/icons/add_to_watch_list.svg",
-                  width: width * 0.05,
+                  width: 27.w,
+                  height: 36.h,
                 ),
                 Icon(
                   Icons.add,
                   color: Colors.white,
-                  size: width * 0.03,
+                  size: 11.04.sp,
                 )
               ]),
             )
           ]),
           SizedBox(
-            width: width*0.31,
             child: Container(
-              margin: EdgeInsets.all(width*0.01),
+              margin: REdgeInsets.only(
+                top: 5.26,
+                left: 6,
+                right: 2
+
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset("asset/icons/star-2.svg",width: width*0.019,),
-                      SizedBox(width: width*0.006,),
-                      Text("7.7",style: TextStyle(color: Colors.white,fontSize: width*0.019),),
+                      SvgPicture.asset("asset/icons/star-2.svg",width: 10.04.w,height: 9.6.h,),
+                      SizedBox(width: 4.96.w),
+                      Text("7.7",style: TextStyle(color: Colors.white,fontSize: 10.sp),),
                     ],
                   ),
-                  SizedBox(height: height*0.006,),
-                  Text("Dora and the lost city of gold",style: TextStyle(color: Colors.white,fontSize: width*0.022),),
-                  SizedBox(height: height*0.006,),
-                  Text("2018  R  1h 59m",style: TextStyle(color: Theme.of(context).colorScheme.onBackground,fontSize: width*0.022)),
+                  SizedBox(height: 1.h),
+                  Text("Dora and the lost city of gold",style: TextStyle(color: Colors.white,fontSize: 10.sp),),
+                  SizedBox(height: 2.h),
+                  Text("2018  R  1h 59m",style: TextStyle(color: Theme.of(context).colorScheme.onBackground,fontSize: 8.sp)),
                 ],
               ),
             ),

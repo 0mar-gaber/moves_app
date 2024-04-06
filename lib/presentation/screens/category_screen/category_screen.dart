@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moves_app/ui/reusable_components/movie_component.dart';
+
+import '../../../core/reusable_components/movie_component.dart';
 
 class CategoryScreen extends StatelessWidget {
   static const String route = "category screen" ;
