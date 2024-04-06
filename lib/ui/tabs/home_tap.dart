@@ -3,7 +3,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:moves_app/ui/reusable_components/new_releases_component.dart';
 import 'package:moves_app/ui/reusable_components/recommended_component.dart';
 import 'package:moves_app/ui/reusable_components/slide_component.dart';
-import 'package:moves_app/ui/tabs/home-tap/movie_details.dart';
+import 'package:moves_app/ui/screens/movie_details_screen.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -17,7 +17,7 @@ class HomeTab extends StatelessWidget {
         children: [
           InkWell(
             onTap: (){
-              Navigator.pushNamed(context, MovieDetails.routeName);
+              Navigator.pushNamed(context, MovieDetails.route);
             },
             child: ImageSlideshow(
               height: height*0.39,
@@ -54,7 +54,7 @@ class HomeTab extends StatelessWidget {
                         bottom: width*0.01,
                         left: width*0.02
                       ),
-                      child: Text("More Like This",style: TextStyle(color: Colors.white,fontSize: width*0.03),)),
+                      child: Text("New Releases ",style: TextStyle(color: Colors.white,fontSize: width*0.03),)),
                   Expanded(
                     child: ListView(
                       scrollDirection: Axis.horizontal,
@@ -94,7 +94,7 @@ class HomeTab extends StatelessWidget {
                           bottom: width*0.01,
                           left: width*0.02
                       ),
-                      child: Text("More Like This",style: TextStyle(color: Colors.white,fontSize: width*0.03),)),
+                      child: Text("Recommended",style: TextStyle(color: Colors.white,fontSize: width*0.03),)),
                   Expanded(
                     child: ListView(
                       scrollDirection: Axis.horizontal,

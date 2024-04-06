@@ -1,59 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moves_app/ui/reusable_components/movie_component.dart';
 
-import '../../shared/home_screen_provider.dart';
+class SearchTab extends StatefulWidget {
+  SearchTab({super.key});
 
-class SearchTab extends StatelessWidget {
-  const SearchTab({super.key});
+  @override
+  State<SearchTab> createState() => _SearchTabState();
+}
+
+class _SearchTabState extends State<SearchTab> {
+  var searchController = TextEditingController();
+
+  bool isTextFieldEmpty = true;
 
   @override
   Widget build(BuildContext context) {
-    HomeScreenProvider provider=Provider.of(context);
-    var height=MediaQuery.of(context).size.height;
-    var width=MediaQuery.of(context).size.width;
-    String NewSearch;
-
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
 
     return Column(
-
-  children: [
-    Padding(
-      padding: const EdgeInsets.only(top: 50.0,left: 20,right: 20),
-      child:TextField(
-      onChanged: ( value){
-        NewSearch=value;
-        provider.changeSearch(NewSearch);
-      },
-        decoration: InputDecoration(
-          hintText: "   search...",
-          hintStyle: TextStyle(color: Color(0xffFFFFFF),fontSize: height*0.024),
-          filled: true,
-          fillColor: Color(0xff514F4F),
-          prefixIcon: Icon(Icons.search),
-          prefixIconColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide:  BorderSide(width: 1,color: Colors.white),
-
-          )
-        ),
-
-      ),
-    ),
-    SizedBox(height: height*0.33,),
-    Column(
-
       children: [
-        Image.asset("asset/image/Icon material-local-movies.png"
-        ,height: height*0.19,
-          fit: BoxFit.contain,
-          width: width,
-
+        Container(
+          margin: EdgeInsets.only(
+              left: width * 0.06, right: width * 0.06, top: width * 0.06),
+          child: TextField(
+            onChanged: (value) {
+             setState(() {
+               if(value.isEmpty){
+                 isTextFieldEmpty = true ;
+                 print(isTextFieldEmpty);
+               }else{
+                 isTextFieldEmpty = false ;
+                 print(isTextFieldEmpty);
+               }
+             });
+            },
+            style: TextStyle(color: Colors.white, fontSize: width * 0.02),
+            cursorColor: Colors.white,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.white, width: 0.7),
+                borderRadius: BorderRadius.circular(60),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white, width: 0.7),
+                borderRadius: BorderRadius.circular(60),
+              ),
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(width * 0.01),
+                child: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.search_outlined)),
+              ),
+              prefixIconColor: Colors.white,
+              hintText: "Search",
+              hintStyle: TextStyle(
+                color: Colors.white,
+                fontSize: width * 0.023,
+                fontWeight: FontWeight.w300,
+              ),
+              filled: true,
+              fillColor: Theme.of(context).colorScheme.errorContainer,
+            ),
+            controller: searchController,
+          ),
         ),
-      Text("No Movies Found",style: TextStyle(color: Colors. white24,fontSize: height*0.024),),
-    ],),
-  ],
-
+        SizedBox(height: height*0.02,),
+        Expanded(
+          child: isTextFieldEmpty
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      "asset/icons/film strip.svg",
+                      width: width * 0.23,
+                    ),
+                    SizedBox(height: height * 0.02),
+                    Text(
+                      "No movies found",
+                      style: TextStyle(
+                          color: Colors.white24, fontSize: height * 0.024),
+                    ),
+                  ],
+                )
+              : Container(
+                margin:EdgeInsets.only(
+                  left: width*0.04,
+                  right: width*0.04,
+                ) ,
+                child: ListView.builder(
+                    itemBuilder: (context, index) => const MovieWidget(),
+                    itemCount: 1,
+                  ),
+              ),
+        ),
+      ],
     );
   }
 }

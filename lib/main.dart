@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moves_app/shared/home_screen_provider.dart';
 import 'package:moves_app/theme/app_theme.dart';
-import 'package:moves_app/ui/home_screen.dart';
-import 'package:moves_app/ui/tabs/home-tap/movie_details.dart';
+import 'package:moves_app/ui/screens/category_screen.dart';
+import 'package:moves_app/ui/screens/home_screen.dart';
+import 'package:moves_app/ui/screens/movie_details_screen.dart';
 import 'package:provider/provider.dart';
 
 void main(){
@@ -16,10 +17,11 @@ class MovesApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        MovieDetails.routeName:(context) => MovieDetails(),
         HomeScreen.route:(context)=>ChangeNotifierProvider(
             create: (context) => HomeScreenProvider(),
             child:  HomeScreen()),
+        MovieDetails.route:(context) => const MovieDetails(),
+        CategoryScreen.route:(context) => const CategoryScreen(),
       },
       initialRoute: HomeScreen.route,
       theme: AppTheme.theme,

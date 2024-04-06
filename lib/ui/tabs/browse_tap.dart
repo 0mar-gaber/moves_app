@@ -1,35 +1,49 @@
 import 'package:flutter/material.dart';
-import '../reusable_components/new_releases_component.dart';
+import 'package:moves_app/ui/screens/category_screen.dart';
+import '../reusable_components/category_component.dart';
 
 class BrowseTab extends StatelessWidget {
   const BrowseTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: height*0.05,),
 
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: [
-                Text("Browse Category", style: Theme.of(context).textTheme.titleLarge),
-              ],
+        Container(
+            margin: EdgeInsets.only(
+                left: width*0.02
+            ),
+            child: Text("Browse Category", style: TextStyle(color: Colors.white,fontSize: width*0.04,fontWeight: FontWeight.w400))),
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.only(
+              left: width*0.03,
+              right: width*0.03,
+            ),
+            child: GridView.builder(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing:width*0.05,
+                mainAxisSpacing: height*0.025,
+                childAspectRatio: 1.9,
+              ),
+
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, CategoryScreen.route);
+                },
+                  child: const CategoryComponent()),
+              itemCount: 8,
 
             ),
-          ),
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsetsDirectional.all(10),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, index) => NewReleasesComponent(),
-              itemCount: 20,
-
-            )
-          ),
-        ],
-      ),
+          )
+        ),
+      ],
     );
   }
 }

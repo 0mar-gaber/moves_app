@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moves_app/shared/home_screen_provider.dart';
 import 'package:moves_app/ui/tabs/browse_tap.dart';
-import 'package:moves_app/ui/tabs/home-tap/home_tap.dart';
+import 'package:moves_app/ui/tabs/home_tap.dart';
 import 'package:moves_app/ui/tabs/search_tap.dart';
 import 'package:moves_app/ui/tabs/watch_list_tab.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
    List<Widget> tabsList=[
      const HomeTab(),
-     const SearchTab(),
+      SearchTab(),
      const BrowseTab(),
      const WatchListTab()
    ];

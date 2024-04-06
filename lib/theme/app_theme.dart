@@ -11,7 +11,8 @@ class AppTheme{
       onPrimaryContainer: AppColors.unselectedIconColor,
       primaryContainer: AppColors.bottomNavigationBarColor,
       onBackground:AppColors.onBackGroundColor,
-      onSurfaceVariant: AppColors.sliderBackGroundColor
+      onSurfaceVariant: AppColors.sliderBackGroundColor,
+      errorContainer: AppColors.searchBackGroundColor
 
 
 
@@ -30,11 +31,6 @@ class AppTheme{
     highlightColor: Colors.transparent,
     hoverColor: Colors.transparent,
 
-      textTheme: TextTheme(
-        titleLarge: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color:Colors.white),
-        titleMedium: TextStyle(fontSize: 15,color:Colors.white),
-        titleSmall: TextStyle(fontSize: 13,color:AppColors.unselectedIconColor),
-      ),
 
 
   );
