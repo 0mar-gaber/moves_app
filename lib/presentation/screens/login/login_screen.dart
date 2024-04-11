@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moves_app/core/utils/colors.dart';
+import 'package:moves_app/presentation/screens/home/home_screen.dart';
 import '../../../core/constant.dart';
 import '../../../core/reusable_components/custom_form_field.dart';
 
@@ -100,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor),
                   onPressed: () {
-
+                    Navigator.pushNamed(context, HomeScreen.route);
                   },
                   child: Text(
                     "LOGIN ",
