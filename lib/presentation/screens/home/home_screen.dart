@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moves_app/core/api/api_manger.dart';
 import 'package:moves_app/presentation/screens/home/home_screen_provider.dart';
 import 'package:moves_app/presentation/screens/home/tabs/browse_tap.dart';
-import 'package:moves_app/presentation/screens/home/tabs/home_tap.dart';
+import 'package:moves_app/presentation/screens/home/tabs/home_tap/home_tap.dart';
 import 'package:moves_app/presentation/screens/home/tabs/search_tap.dart';
 import 'package:moves_app/presentation/screens/home/tabs/watch_list_tab.dart';
 import 'package:provider/provider.dart';
 
+
+
+
 class HomeScreen extends StatelessWidget {
   static const route = "Home screen";
+  ApiManager apiManger = ApiManager();
 
-   HomeScreen({super.key});
+  HomeScreen({super.key});
 
    List<Widget> tabsList=[
      const HomeTab(),
-      const SearchTab(),
+     const SearchTab(),
      const BrowseTab(),
      const WatchListTab()
    ];
@@ -74,5 +79,6 @@ class HomeScreen extends StatelessWidget {
         label: lapel);
     return bottomNavigationBarItem;
   }
+
 
 }

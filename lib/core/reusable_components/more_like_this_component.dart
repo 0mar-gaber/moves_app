@@ -1,16 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moves_app/domain/entities/recommended_entity.dart';
 
-class RecommendedComponent extends StatelessWidget {
-  RecommendedEntity recommendedEntity ;
-  RecommendedComponent({super.key,required this.recommendedEntity});
+class MoreLikeThisComponent extends StatelessWidget {
+  const MoreLikeThisComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String moviesYear =extractYearFromDate(recommendedEntity.releaseDate??"2022-04-07");
-    String moveMPAARating  = getMPAARating(recommendedEntity.adult??false);
     return Container(
       width: 97.w,
       height: 184.h,
@@ -29,8 +26,10 @@ class RecommendedComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(children: [
-            Image.network(
-              "https://image.tmdb.org/t/p/w500/${recommendedEntity.posterPath}",
+            Image(
+              image: const AssetImage(
+                "asset/image/move_casing.png",
+              ),
               height: 127.74.h,
               width: 96.87.w,
               fit: BoxFit.fill,
@@ -56,29 +55,28 @@ class RecommendedComponent extends StatelessWidget {
           SizedBox(
             child: Container(
               margin: REdgeInsets.only(
-                top: 5.26,
-                left: 6,
-                right: 2
+                  top: 5.26,
+                  left: 6,
+                  right: 2
 
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SvgPicture.asset("asset/icons/star-2.svg",height: 13.6.h,),
+                      SvgPicture.asset("asset/icons/star-2.svg",width: 10.04.w,height: 9.6.h,),
                       SizedBox(width: 2.96.w),
                       Container(
                         margin: REdgeInsets.only(
-                          top: 3
+                          top: 2
                         ),
-                          child: Text(recommendedEntity.voteAverage!.toStringAsFixed(1),style: TextStyle(color: Colors.white,fontSize: 10.sp),)),
+                          child: Text("7.7",style: TextStyle(color: Colors.white,fontSize: 10.sp),)),
                     ],
                   ),
-                  Text(recommendedEntity.title??"",style: TextStyle(color: Colors.white,fontSize: 10.sp),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                  Text("Dora and the lost city of gold",style: TextStyle(color: Colors.white,fontSize: 10.sp),),
                   SizedBox(height: 2.h),
-                  Text("$moviesYear  $moveMPAARating",style: TextStyle(color: Theme.of(context).colorScheme.onBackground,fontSize: 8.sp)),
+                  Text("2018  R  1h 59m",style: TextStyle(color: Theme.of(context).colorScheme.onBackground,fontSize: 8.sp)),
                 ],
               ),
             ),
@@ -86,22 +84,5 @@ class RecommendedComponent extends StatelessWidget {
         ],
       ),
     );
-
-  }
-
-  String extractYearFromDate(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    return dateTime.year.toString();
-  }
-  String getMPAARating(bool adult) {
-    if (adult) {
-      // For adult content
-      return 'NC-17'; // Not suitable for viewers under 17
-      // or 'X' for explicit adult content (though less common nowadays)
-    } else {
-      // For non-adult content
-      return 'PG-13'; // Parental guidance suggested for viewers under 13
-      // You could use 'PG' for general audiences or 'G' for all ages depending on content
-    }
   }
 }

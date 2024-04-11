@@ -23,7 +23,6 @@ class _SearchTabState extends State<SearchTab> {
     return Column(
       children: [
         Container(
-          height: 48.h,
           margin: REdgeInsets.only(
               left: 35,
               right: 34,

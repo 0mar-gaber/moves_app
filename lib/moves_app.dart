@@ -8,7 +8,7 @@ import 'package:moves_app/presentation/screens/movie_details_screen/movie_detail
 import 'package:moves_app/presentation/screens/register/register_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'config/theme/app_theme.dart';
+import 'config/app_theme.dart';
 
 class MovesApp extends StatelessWidget {
   const MovesApp({super.key});

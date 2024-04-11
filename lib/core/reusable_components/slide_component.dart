@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moves_app/domain/entities/popular_movie_entity.dart';
 
 class SlideComponent extends StatelessWidget {
-  const SlideComponent({super.key});
+  PopularMovieEntity popularMovieEntity ;
+  SlideComponent({super.key,required this.popularMovieEntity});
+
+
 
   @override
   Widget build(BuildContext context) {
+    String moviesYear =extractYearFromDate(popularMovieEntity.releaseDate??"2022-04-07");
+    String moveMPAARating  = getMPAARating(popularMovieEntity.adult??false);
     return Container(
       width: 412.w,
       height: 289.h,
@@ -17,7 +23,7 @@ class SlideComponent extends StatelessWidget {
           children: [
             Stack(alignment: Alignment.center, children: [
               Image(
-                image: const AssetImage("asset/image/casing.jpg"),
+                image: NetworkImage("https://image.tmdb.org/t/p/w500/${popularMovieEntity.backdropPath}"),
                 height: 217.h,
                 width: 412.w,
                 fit: BoxFit.fill,
@@ -31,18 +37,20 @@ class SlideComponent extends StatelessWidget {
                   ))
             ]),
             Container(
-              margin:
-                  REdgeInsets.only(top: 14, bottom: 43, left: 162, right: 56),
+              alignment: Alignment.bottomLeft,
+              margin: REdgeInsets.only(top: 14, bottom: 43,left: 230),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Dora and the lost city of gold",
+                    popularMovieEntity.title??"",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: TextStyle(color: Colors.white, fontSize: 14.sp),
                   ),
                   SizedBox(height: 10.h),
                   Text(
-                    "2019  PG-13  2h 7m",
+                    "$moviesYear  $moveMPAARating ",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.onBackground,
                         fontSize: 10.sp),
@@ -56,8 +64,8 @@ class SlideComponent extends StatelessWidget {
             margin: REdgeInsets.only(top: 90, bottom: 24, left: 21, right: 262),
             child: Stack(children: [
               Image(
-                image: const AssetImage(
-                  "asset/image/move_casing.png",
+                image: NetworkImage(
+                  "https://image.tmdb.org/t/p/w500/${popularMovieEntity.posterPath}",
                 ),
                 height: 199.sp,
                 width: 129.w,
@@ -81,4 +89,21 @@ class SlideComponent extends StatelessWidget {
       ]),
     );
   }
+
+  String extractYearFromDate(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    return dateTime.year.toString();
+  }
+  String getMPAARating(bool adult) {
+    if (adult) {
+      // For adult content
+      return 'NC-17'; // Not suitable for viewers under 17
+      // or 'X' for explicit adult content (though less common nowadays)
+    } else {
+      // For non-adult content
+      return 'PG-13'; // Parental guidance suggested for viewers under 13
+      // You could use 'PG' for general audiences or 'G' for all ages depending on content
+    }
+  }
+
 }

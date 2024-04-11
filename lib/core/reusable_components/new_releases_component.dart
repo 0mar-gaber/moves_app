@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moves_app/domain/entities/new_releases_entity.dart';
 
 class NewReleasesComponent extends StatelessWidget {
-  const NewReleasesComponent({super.key});
+  NewReleasesEntity newReleasesEntity ;
+  NewReleasesComponent({super.key,required this.newReleasesEntity});
 
   @override
   Widget build(BuildContext context) {
 
     return Stack(
         children: [
-      Image(
-        image: const AssetImage(
-          "asset/image/move_casing.png",
-
-        ),
-
+      Image.network(
+        "https://image.tmdb.org/t/p/w500${newReleasesEntity.posterPath}",
         height: 127.74.h,
         width: 96.87.w,
         fit: BoxFit.fill,
       ),
       InkWell(
         onTap: () {
-          /// TODO
+          // TODO : Implement add to watch list
         },
         child: Stack(
             alignment: Alignment.center,
