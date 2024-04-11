@@ -91,12 +91,12 @@ class _SearchTabState extends State<SearchTab> {
                 )
               : Container(
                 margin:REdgeInsets.only(
-                  left: 29,
-                  right: 50,
+                  left: 30,
+                  right: 30,
                 ) ,
                 child: ListView.builder(
                     itemBuilder: (context, index) => const MovieWidget(),
-                    itemCount: 1,
+                    itemCount: 5,
                   ),
               ),
         ),

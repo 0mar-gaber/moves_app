@@ -16,6 +16,7 @@ class AppTheme{
 
 
 
+
     ),
     scaffoldBackgroundColor: AppColors.backGroundColor,
     appBarTheme: const AppBarTheme(
