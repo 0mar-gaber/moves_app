@@ -41,10 +41,19 @@ dependencies:
   flutter_image_slideshow: ^0.1.6
   flutter_screenutil: ^5.9.0
   carousel_slider: ^4.2.1
+  dio: ^5.4.2+1
+  dartz: ^0.10.1
+  flutter_bloc: ^8.1.5
+  bloc: ^8.1.4
+  injectable: ^2.4.1
+  get_it:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  injectable_generator:
+  build_runner:
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
