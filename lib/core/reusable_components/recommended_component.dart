@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moves_app/domain/entities/recommended_entity.dart';
+import '../../domain/entities/movie_entity.dart';
 
 class RecommendedComponent extends StatelessWidget {
-  RecommendedEntity recommendedEntity ;
+  MoviesEntity recommendedEntity ;
   RecommendedComponent({super.key,required this.recommendedEntity});
 
   @override

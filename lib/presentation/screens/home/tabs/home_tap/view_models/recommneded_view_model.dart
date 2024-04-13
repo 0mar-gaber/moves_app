@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moves_app/domain/entities/recommended_entity.dart';
 import 'package:moves_app/domain/use_cases/home_use_case/recommended_use_case.dart';
+
+import '../../../../../../domain/entities/movie_entity.dart';
 
 @injectable
 class RecommendedViewModel extends Cubit<RecommendedState>{
@@ -24,7 +25,7 @@ class RecommendedInitState extends RecommendedState{}
 class RecommendedLoading extends RecommendedState{}
 
 class RecommendedSuccess extends RecommendedState{
-  List<RecommendedEntity>? moviesList ;
+  List<MoviesEntity>? moviesList ;
   RecommendedSuccess(this.moviesList);
 }
 

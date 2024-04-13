@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:moves_app/domain/entities/new_releases_entity.dart';
+
+import '../entities/movie_entity.dart';
 
 abstract class NewReleasesRepo{
-  Future<Either<List<NewReleasesEntity>,String>> getNewReleasesMovies();
+  Future<Either<List<MoviesEntity>,String>> getNewReleasesMovies();
 }

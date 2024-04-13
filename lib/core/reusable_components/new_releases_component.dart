@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moves_app/domain/entities/new_releases_entity.dart';
+
+import '../../domain/entities/movie_entity.dart';
 
 class NewReleasesComponent extends StatelessWidget {
-  NewReleasesEntity newReleasesEntity ;
+  MoviesEntity newReleasesEntity ;
   NewReleasesComponent({super.key,required this.newReleasesEntity});
 
   @override

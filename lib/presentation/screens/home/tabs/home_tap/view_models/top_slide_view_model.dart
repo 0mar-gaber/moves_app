@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moves_app/domain/use_cases/home_use_case/top_side_use_case.dart';
 
-import '../../../../../../domain/entities/popular_movie_entity.dart';
+import '../../../../../../domain/entities/movie_entity.dart';
+
 @injectable
 class TopSlideViewModel extends Cubit<TopSlideState>{
   TopSlideUseCase topSlideUseCase ;
@@ -37,6 +38,6 @@ class TopSlideError extends TopSlideState{
 }
 
 class TopSlideSuccess extends TopSlideState{
-  List<PopularMovieEntity>? popularMoviesList ;
+  List<MoviesEntity>? popularMoviesList ;
   TopSlideSuccess({this.popularMoviesList});
 }

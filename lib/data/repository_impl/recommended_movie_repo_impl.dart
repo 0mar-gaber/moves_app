@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moves_app/data/datasource_contract/recommended_movie_datasource_contract.dart';
-
-import 'package:moves_app/domain/entities/recommended_entity.dart';
-
+import '../../domain/entities/movie_entity.dart';
 import '../../domain/repository_contract/recommended_movie_repository.dart';
 
 @Injectable(as:RecommendedMovieRepo )
@@ -12,12 +10,12 @@ class RecommendedMovieRepoImpl extends RecommendedMovieRepo {
   @factoryMethod
   RecommendedMovieRepoImpl(this.recommendedMovieDatasourceContract);
   @override
-  Future<Either<List<RecommendedEntity>, String>> getRecommendedMovies() async {
+  Future<Either<List<MoviesEntity>, String>> getRecommendedMovies() async {
     var result = await recommendedMovieDatasourceContract.getRecommendedMovies();
     return result.fold(
             (response){
               var responseList = response.results??[];
-              var recommendedList = responseList.map((newReleaseMovie) => RecommendedEntity(
+              var recommendedList = responseList.map((newReleaseMovie) => MoviesEntity(
                 title: newReleaseMovie.title,
                 overview: newReleaseMovie.overview,
                 adult: newReleaseMovie.adult,

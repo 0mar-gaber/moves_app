@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moves_app/domain/entities/new_releases_entity.dart';
 
+import '../../../../../../domain/entities/movie_entity.dart';
 import '../../../../../../domain/use_cases/home_use_case/new_releases_use_case.dart';
 
 
@@ -28,7 +28,7 @@ class NewReleasesInitState extends NewReleasesState{}
 class NewReleasesLoading extends NewReleasesState{}
 
 class NewReleasesSuccess extends NewReleasesState{
-  List<NewReleasesEntity>? newReleasesList ;
+  List<MoviesEntity>? newReleasesList ;
   NewReleasesSuccess(this.newReleasesList);
 
 }

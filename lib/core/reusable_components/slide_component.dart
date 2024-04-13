@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moves_app/domain/entities/popular_movie_entity.dart';
+
+import '../../domain/entities/movie_entity.dart';
 
 class SlideComponent extends StatelessWidget {
-  PopularMovieEntity popularMovieEntity ;
+  MoviesEntity popularMovieEntity ;
   SlideComponent({super.key,required this.popularMovieEntity});
 
 

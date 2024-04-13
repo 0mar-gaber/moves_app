@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:moves_app/domain/entities/recommended_entity.dart';
+import '../entities/movie_entity.dart';
 
 
 abstract class RecommendedMovieRepo{
-  Future<Either<List<RecommendedEntity>, String>> getRecommendedMovies();
+  Future<Either<List<MoviesEntity>, String>> getRecommendedMovies();
 }

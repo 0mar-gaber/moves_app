@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moves_app/core/constant.dart';
 
 class CategoryComponent extends StatelessWidget {
-  const CategoryComponent({super.key});
+  int index ;
+   CategoryComponent({super.key,required this.index});
+
 
   @override
   Widget build(BuildContext context) {
@@ -9,11 +13,16 @@ class CategoryComponent extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-        Image(image: const AssetImage("asset/image/casing.jpg",),fit: BoxFit.cover,height: height,),
+        Image.network(
+          Constants.genres[index]["imageUrl"],
+          fit: BoxFit.cover,
+          height: height,
+          width: width,
+        ),
         Container(
           color: const Color.fromRGBO(52, 53, 52, 0.5),
           child: Center(
-            child: Text("Adventure",style: TextStyle(color: Colors.white,fontSize: width*0.03,fontWeight: FontWeight.w600),),
+            child: Text(Constants.genres[index]["name"],style: TextStyle(color: Colors.white,fontSize: 15.sp,fontWeight: FontWeight.w600),),
           ),
         )
       ],

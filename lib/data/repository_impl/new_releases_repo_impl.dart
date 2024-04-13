@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moves_app/data/datasource_contract/new_relealeses_datasource_contract.dart';
-import 'package:moves_app/domain/entities/new_releases_entity.dart';
+import 'package:moves_app/domain/entities/movie_entity.dart';
 import 'package:moves_app/domain/repository_contract/new_releases_repository.dart';
 
 @Injectable(as: NewReleasesRepo)
@@ -12,12 +12,12 @@ class NewReleasesRepoImpl extends NewReleasesRepo {
   NewReleasesRepoImpl(this.newReleasesDataSourceContract);
 
   @override
-  Future<Either<List<NewReleasesEntity>, String>> getNewReleasesMovies() async {
+  Future<Either<List<MoviesEntity>, String>> getNewReleasesMovies() async {
     var result = await newReleasesDataSourceContract.getNewReleasesMovies();
     return result.fold((response) {
       var responseList = response.results ?? [];
       var newReleasesMovieList = responseList
-          .map((newReleasesMovie) => NewReleasesEntity(
+          .map((newReleasesMovie) => MoviesEntity(
                 adult: newReleasesMovie.adult,
                 backdropPath: newReleasesMovie.backdropPath,
                 id: newReleasesMovie.id,
