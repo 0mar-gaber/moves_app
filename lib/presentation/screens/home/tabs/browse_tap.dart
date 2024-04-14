@@ -39,7 +39,7 @@ class BrowseTab extends StatelessWidget {
               ),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, CategoryScreen.route);
+                  Navigator.pushNamed(context, CategoryScreen.route,arguments: Constants.genres[index]);
                 },
                   child:  CategoryComponent(index: index)),
               itemCount: Constants.genres.length,

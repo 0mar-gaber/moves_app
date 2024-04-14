@@ -5,14 +5,14 @@ import 'browse_movie_result.dart';
 /// total_pages : 2608
 /// total_results : 52142
 
-class BrowseMovieResponse {
-  BrowseMovieResponse({
+class BrowseMovieResponseModel {
+  BrowseMovieResponseModel({
       this.page, 
       this.results, 
       this.totalPages, 
       this.totalResults,});
 
-  BrowseMovieResponse.fromJson(dynamic json) {
+  BrowseMovieResponseModel.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];

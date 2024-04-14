@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moves_app/core/reusable_components/movie_details_movie_casing_components.dart';
 
 import 'movie_type_component.dart';
-import 'new_releases_component.dart';
 
 class MovieDetailsComponent extends StatelessWidget {
   const MovieDetailsComponent({super.key});

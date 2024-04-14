@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/reusable_components/movie_component.dart';
+import '../../../../domain/entities/movie_entity.dart';
 
 class WatchListTab extends StatelessWidget {
   const WatchListTab({super.key});
@@ -25,10 +26,10 @@ class WatchListTab extends StatelessWidget {
           child: ListView.builder(
               padding: REdgeInsets.only(
                   left: 20.5,
-                  right: 33.5,
+                  right: 20.5,
                   top: 15.51,
               ),
-              itemBuilder: (context, index) => const MovieWidget(),
+              itemBuilder: (context, index) =>  MovieWidget(moviesEntity: MoviesEntity(),),
               itemCount: 10),
         ),
       ],

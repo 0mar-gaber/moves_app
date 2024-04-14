@@ -7,7 +7,7 @@
 /// poster_path : "/f7QBvIzoWSJw3jWPGnZBc5vwQ0l.jpg"
 /// release_date : "2024-03-02"
 /// title : "Kung Fu Panda 4"
-/// vote_average : 7.061
+  /// vote_average : 7.061
 
 class MoviesEntity {
   MoviesEntity({

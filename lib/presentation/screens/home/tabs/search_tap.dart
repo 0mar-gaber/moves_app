@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moves_app/domain/entities/movie_entity.dart';
 
 import '../../../../core/reusable_components/movie_component.dart';
 
@@ -94,7 +95,7 @@ class _SearchTabState extends State<SearchTab> {
                   right: 30,
                 ) ,
                 child: ListView.builder(
-                    itemBuilder: (context, index) => const MovieWidget(),
+                    itemBuilder: (context, index) =>  MovieWidget(moviesEntity: MoviesEntity(),),
                     itemCount: 5,
                   ),
               ),
