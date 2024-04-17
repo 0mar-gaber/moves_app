@@ -20,7 +20,8 @@ class MoviesEntity {
       this.posterPath,
       this.releaseDate,
       this.title,
-      this.voteAverage,});
+      this.voteAverage,
+      this.genres});
 
   MoviesEntity.fromJson(dynamic json) {
     adult = json['adult'];
@@ -33,6 +34,7 @@ class MoviesEntity {
     releaseDate = json['release_date'];
     title = json['title'];
     voteAverage = json['vote_average'];
+    genres = json["genres"];
   }
   bool? adult;
   String? backdropPath;
@@ -44,6 +46,7 @@ class MoviesEntity {
   String? releaseDate;
   String? title;
   double? voteAverage;
+  List<dynamic>? genres;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -57,6 +60,7 @@ class MoviesEntity {
     map['release_date'] = releaseDate;
     map['title'] = title;
     map['vote_average'] = voteAverage;
+    map["genres"] = genres;
     return map;
   }
 

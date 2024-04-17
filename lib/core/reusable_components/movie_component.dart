@@ -18,7 +18,7 @@ class MovieWidget extends StatelessWidget {
           children: [
             Stack(children: [
               SizedBox(
-                width: 140.w,
+                width: 130.w,
                 child: Image.network(
                  "https://image.tmdb.org/t/p/w500${moviesEntity.backdropPath}",
                   height: 89.h,

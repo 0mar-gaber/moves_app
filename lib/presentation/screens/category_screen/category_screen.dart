@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moves_app/core/reusable_components/movie_component.dart';
+import 'package:moves_app/presentation/screens/movie_details_screen/movie_details_screen.dart';
 import '../../../core/DI/di.dart';
 import 'category_screen_view_model.dart';
 
@@ -42,7 +43,11 @@ class CategoryScreen extends StatelessWidget {
               var moviesList = state.filteredMoviesList??[];
               return ListView.builder(
                 padding: REdgeInsets.all(10),
-                itemBuilder: (context, index) => MovieWidget(moviesEntity: moviesList[index],),
+                itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, MovieDetails.route,arguments: moviesList[index]);
+                    },
+                    child: MovieWidget(moviesEntity: moviesList[index],)),
                 itemCount: moviesList.length,
               );
             }
