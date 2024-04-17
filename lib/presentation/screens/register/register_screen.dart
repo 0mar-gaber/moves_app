@@ -1,12 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moves_app/presentation/screens/home/home_screen.dart';
 import '../../../core/constant.dart';
 import '../../../core/reusable_components/custom_form_field.dart';
 import '../../../core/utils/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   static const String route = "register";
 
@@ -32,9 +33,11 @@ class _LoginScreenState extends State<RegisterScreen> {
         backgroundColor: AppColors.backGroundColor,
         title: Text("Create Account",
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+
         centerTitle: true,
       ),
       body: Padding(
@@ -62,6 +65,8 @@ class _LoginScreenState extends State<RegisterScreen> {
                     },
                     label: "Full Name",
                     keyboard: TextInputType.emailAddress),
+                SizedBox(height: 20.h),
+
                 CustomFormField(
                     controller: emailController,
                     validator: (value) {
@@ -75,6 +80,8 @@ class _LoginScreenState extends State<RegisterScreen> {
                     },
                     label: "Email",
                     keyboard: TextInputType.emailAddress),
+                SizedBox(height: 20.h),
+
                 CustomFormField(
                   controller: passwordController,
                   validator: (value) {
@@ -102,12 +109,15 @@ class _LoginScreenState extends State<RegisterScreen> {
                         color: AppColors.unselectedIconColor,
                       )),
                 ),
+                SizedBox(height: 20.h),
+
                 CustomFormField(
                   controller: confirmPasswordController,
                   validator: (value) {
                     if (value != passwordController.text) {
                       return "Don`t Match";
                     }
+                    return null;
                   },
                   label: "Confirm Password",
                   keyboard: TextInputType.visiblePassword,
@@ -126,16 +136,20 @@ class _LoginScreenState extends State<RegisterScreen> {
                       )),
                 ),
 
-                SizedBox(height: 10.h),
+                SizedBox(height: 20.h),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.backGroundColor,),
+                      backgroundColor: AppColors.primaryColor,
+                      fixedSize: Size(double.infinity, 40.h)
+                    ),
                     onPressed: () {
-
+                      if(formKey.currentState!.validate()){
+                        Navigator.pushNamed(context, HomeScreen.route);
+                      }
                     },
                     child: Text(
                       "Register ",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Colors.white, fontSize: 15.sp),
                     ))
               ],
             ),

@@ -4,4 +4,5 @@ class EndPoint{
   static const recommendedEndPoint = "/3/movie/top_rated";
   static const browseEndPoint = "/3/discover/movie";
   static const movieDetails = "/3/movie/";
+  static const movieSearch = "/3/search/movie";
 }

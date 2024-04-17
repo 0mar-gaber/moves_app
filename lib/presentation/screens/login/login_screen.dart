@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moves_app/core/utils/colors.dart';
 import 'package:moves_app/presentation/screens/home/home_screen.dart';
+import 'package:moves_app/presentation/screens/register/register_screen.dart';
 import '../../../core/constant.dart';
 import '../../../core/reusable_components/custom_form_field.dart';
 
@@ -20,15 +21,16 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
 
       appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: Colors.transparent,
         title: Text("Login",
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
         centerTitle: true,
@@ -41,12 +43,12 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+               Text(
                 "Welcome back !",
                 style: TextStyle(
                     color: AppColors.unselectedIconColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 30),
+                    fontSize: 20.sp),
               ),
 
               SizedBox(height: 20.h,),
@@ -70,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomFormField(
                 controller: passwordController,
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  if (value == "" || value!.isEmpty) {
                     return " This field can`t be empty";
                   }
                   if (value.length < 8) {
@@ -99,20 +101,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    fixedSize: Size(double.infinity, 40.h),
                       backgroundColor: AppColors.primaryColor),
                   onPressed: () {
-                    Navigator.pushNamed(context, HomeScreen.route);
+                    if(formKey.currentState!.validate()){
+                      Navigator.pushNamed(context, HomeScreen.route);
+                    }
                   },
                   child: Text(
                     "LOGIN ",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.white, fontSize: 10.sp),
                   )),
-              SizedBox(height: 25),
+               SizedBox(height: 15.h),
+              Text("or",style: TextStyle(color: Colors.white,fontSize: 10.sp),textAlign: TextAlign.center,),
+              SizedBox(height: 15.h),
+
               InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, "register");
+                    Navigator.pushNamed(context,RegisterScreen.route);
                   },
-                  child: Text("Create My Account",style: TextStyle( color: AppColors.unselectedIconColor,fontSize: 15),)),
+                  child: Text("Create My Account",style: TextStyle( color: AppColors.unselectedIconColor,fontSize: 10.sp),textAlign: TextAlign.center,)),
             ],
           ),
         ),

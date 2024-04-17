@@ -84,7 +84,11 @@ class MovieDetails extends StatelessWidget {
                                 bottom: 17,
                                 right: 17
                             ),
-                            itemBuilder: (context, index) => MoreLikeThisComponent(moviesEntity: similarList[index],),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, MovieDetails.route,arguments: similarList[index]);
+                              },
+                                child: MoreLikeThisComponent(moviesEntity: similarList[index],)),
                             scrollDirection: Axis.horizontal,
                             separatorBuilder: (context, index) =>
                                 SizedBox(width: 14.w),

@@ -25,10 +25,10 @@ class MovesApp extends StatelessWidget {
           HomeScreen.route:(context)=>ChangeNotifierProvider(
               create: (context) => HomeScreenProvider(),
               child:  HomeScreen()),
-          MovieDetails.route:(context) =>  MovieDetails(),
-          CategoryScreen.route:(context) =>  CategoryScreen(),
-          LoginScreen.route:(context) =>  LoginScreen(),
-          RegisterScreen.route :(context) =>  RegisterScreen(),
+          MovieDetails.route:(context) =>  const MovieDetails(),
+          CategoryScreen.route:(context) =>  const CategoryScreen(),
+          LoginScreen.route:(context) =>  const LoginScreen(),
+          RegisterScreen.route :(context) =>  const RegisterScreen(),
 
         },
         initialRoute:LoginScreen.route,

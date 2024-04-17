@@ -18,10 +18,23 @@ class HomeScreenProvider extends ChangeNotifier{
     }
   }
 
-  String search="";
-  changeSearch(String newSearch){
-    if(search==newSearch)return;
-    search=newSearch;
+  String searchQuery = "";
+  bool isSearchEmpty = true ;
+  changeSearchState(bool newState){
+    isSearchEmpty = newState;
+    notifyListeners();
+  }
+  changeSearchQuery(String newSearchQuery){
+    if(newSearchQuery.isEmpty||newSearchQuery ==""){
+      isSearchEmpty= true ;
+      notifyListeners();
+
+    }else{
+      isSearchEmpty = false ;
+      notifyListeners();
+
+    }
+    searchQuery = newSearchQuery ;
     notifyListeners();
   }
 

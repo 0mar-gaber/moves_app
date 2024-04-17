@@ -18,9 +18,9 @@ class MovieWidget extends StatelessWidget {
           children: [
             Stack(children: [
               SizedBox(
-                width: 130.w,
+                width: 120.w,
                 child: Image.network(
-                 "https://image.tmdb.org/t/p/w500${moviesEntity.backdropPath}",
+                 "https://image.tmdb.org/t/p/w500${moviesEntity.backdropPath??"/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg"}",
                   height: 89.h,
                   width: 140.w,
                   fit: BoxFit.fill,
@@ -89,8 +89,12 @@ class MovieWidget extends StatelessWidget {
     );
   }
   String extractYearFromDate(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    return dateTime.year.toString();
+    try{
+      DateTime dateTime = DateTime.parse(dateString);
+      return dateTime.year.toString();
+    }catch(error){
+      return "2023";
+    }
   }
   String getMPAARating(bool adult) {
     if (adult) {
