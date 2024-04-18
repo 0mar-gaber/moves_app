@@ -3,8 +3,8 @@ import 'package:injectable/injectable.dart';
 import 'package:moves_app/core/api/api_manger.dart';
 import 'package:moves_app/core/api/end_points.dart';
 import 'package:moves_app/core/constant.dart';
-import 'package:moves_app/data/datasource_contract/popular_movie_datasource_contract.dart';
 
+import '../api_datasource_contract/popular_movie_datasource_contract.dart';
 import '../models/popular_movies_model/popular_movie_response.dart';
 
 @Injectable(as: PopularMovieDatasourceContract)

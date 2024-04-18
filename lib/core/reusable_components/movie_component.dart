@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../domain/entities/movie_entity.dart';
+import '../../presentation/shared_provider/shared_provider.dart';
 
 class MovieWidget extends StatelessWidget {
   MoviesEntity moviesEntity ;
@@ -10,6 +13,8 @@ class MovieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SharedProvider sharedProvider = Provider.of<SharedProvider>(context);
+    int? id = moviesEntity.id;
     String moviesYear =extractYearFromDate(moviesEntity.releaseDate??"2022-04-07");
     String moveMPAARating  = getMPAARating(moviesEntity.adult??false);
     return Column(
@@ -28,9 +33,24 @@ class MovieWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  /// TODO
-                },
-                child: Stack(alignment: Alignment.center, children: [
+                  var userId = FirebaseAuth.instance.currentUser?.uid;
+                  if(!sharedProvider.moviesList.contains(id)){
+                    sharedProvider.addToWatchList(userId!, id!);
+                  }else{
+                    sharedProvider.removeFromWatchList(userId!,id!);
+                  }
+                  },
+                child: !sharedProvider.moviesList.contains(id)
+                    ? Stack(alignment: Alignment.center, children: [
+                  SvgPicture.asset("asset/icons/add_to_watch_list.svg",
+                      width: 27.w, height: 36.h),
+                  Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 11.04.sp,
+                  )
+                ])
+                    : Stack(alignment: Alignment.center, children: [
                   SvgPicture.asset(
                     "asset/icons/add_to_watch_list.svg",
                     width: 27.w,
@@ -40,8 +60,7 @@ class MovieWidget extends StatelessWidget {
                         BlendMode.srcIn),
                   ),
                   Icon(Icons.done, color: Colors.white, size: 11.04.sp)
-                ]),
-              )
+                ]),              )
             ]),
             SizedBox(width: 10.w,),
             Column(

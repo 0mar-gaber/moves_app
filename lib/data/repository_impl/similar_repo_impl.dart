@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moves_app/data/datasource_contract/similar_datasource_contract.dart';
 import 'package:moves_app/domain/entities/movie_entity.dart';
 import 'package:moves_app/domain/repository_contract/similar_repository.dart';
+
+import '../api_datasource_contract/similar_datasource_contract.dart';
 @Injectable(as:SimilarRepo )
 class SimilarRepoImpl extends SimilarRepo{
   SimilarDatasourceContract similarDatasourceContract ;

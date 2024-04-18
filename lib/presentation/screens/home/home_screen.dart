@@ -1,20 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moves_app/core/api/api_manger.dart';
+import 'package:moves_app/core/firestore/firestore_manger.dart';
 import 'package:moves_app/presentation/screens/home/home_screen_provider.dart';
 import 'package:moves_app/presentation/screens/home/tabs/browse_tap.dart';
 import 'package:moves_app/presentation/screens/home/tabs/home_tap/home_tap.dart';
 import 'package:moves_app/presentation/screens/home/tabs/search_tab/search_tap.dart';
-import 'package:moves_app/presentation/screens/home/tabs/watch_list_tab.dart';
+import 'package:moves_app/presentation/screens/home/tabs/watch_list_tab/watch_list_tab.dart';
 import 'package:provider/provider.dart';
+
 
 
 
 
 class HomeScreen extends StatelessWidget {
   static const route = "Home screen";
-  ApiManager apiManger = ApiManager();
 
   HomeScreen({super.key});
 
@@ -28,6 +31,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeScreenProvider homeScreenProvider = Provider.of<HomeScreenProvider>(context);
+
 
     return Scaffold(
       body: tabsList[homeScreenProvider.currentBottomNavBarItem],

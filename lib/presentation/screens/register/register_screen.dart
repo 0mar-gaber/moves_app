@@ -1,7 +1,11 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moves_app/core/reusable_components/dialog_utils.dart';
 import 'package:moves_app/presentation/screens/home/home_screen.dart';
+import 'package:moves_app/presentation/shared_provider/shared_provider.dart';
+import 'package:provider/provider.dart';
 import '../../../core/constant.dart';
 import '../../../core/reusable_components/custom_form_field.dart';
 import '../../../core/utils/colors.dart';
@@ -26,7 +30,7 @@ class _LoginScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+    SharedProvider sharedProvider = Provider.of<SharedProvider>(context);
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
@@ -36,7 +40,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                 fontSize: 15.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
 
         centerTitle: true,
       ),
@@ -143,9 +147,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       fixedSize: Size(double.infinity, 40.h)
                     ),
                     onPressed: () {
-                      if(formKey.currentState!.validate()){
-                        Navigator.pushNamed(context, HomeScreen.route);
-                      }
+                      register();
                     },
                     child: Text(
                       "Register ",
@@ -158,6 +160,33 @@ class _LoginScreenState extends State<RegisterScreen> {
       ),
 
     );
+  }
+
+  register() async {
+    SharedProvider sharedProvider = Provider.of<SharedProvider>(context,listen: false);
+    if(formKey.currentState!.validate()){
+      DialogUti.showLoadingDialog(context);
+      try{
+        var userInfo = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email:emailController.text ,
+            password: passwordController.text);
+        sharedProvider.addToWatchList(userInfo.user!.uid,1);
+        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.route, (route) => false);
+      }on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+          DialogUti.closeDialog(context);
+          DialogUti.showMessageDialog(context: context,message: "Password is too weak");
+
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+          DialogUti.closeDialog(context);
+          DialogUti.showMessageDialog(context: context,message: "Email is already used");
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 
 

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moves_app/data/datasource_contract/recommended_movie_datasource_contract.dart';
 import '../../core/api/api_manger.dart';
 import '../../core/api/end_points.dart';
 import '../../core/constant.dart';
+import '../api_datasource_contract/recommended_movie_datasource_contract.dart';
 import '../models/recommended_model/recomended_response.dart';
 
 @Injectable(as: RecommendedMovieDatasourceContract)

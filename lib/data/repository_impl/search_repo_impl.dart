@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moves_app/data/datasource_contract/search_datasource_contract.dart';
 import 'package:moves_app/domain/entities/movie_entity.dart';
 import 'package:moves_app/domain/repository_contract/search_repository.dart';
+
+import '../api_datasource_contract/search_datasource_contract.dart';
 @Injectable(as:SearchRepo)
 class SearchRepoImpl extends SearchRepo{
   SearchDatasourceContract searchDatasourceContract ;

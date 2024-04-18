@@ -1,30 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../../domain/entities/movie_entity.dart';
+import '../../presentation/shared_provider/shared_provider.dart';
 
 class RecommendedComponent extends StatelessWidget {
-  MoviesEntity recommendedEntity ;
-  RecommendedComponent({super.key,required this.recommendedEntity});
+  MoviesEntity recommendedEntity;
+
+  RecommendedComponent({super.key, required this.recommendedEntity});
 
   @override
   Widget build(BuildContext context) {
-    String moviesYear =extractYearFromDate(recommendedEntity.releaseDate??"2022-04-07");
-    String moveMPAARating  = getMPAARating(recommendedEntity.adult??false);
+    String moviesYear =
+        extractYearFromDate(recommendedEntity.releaseDate ?? "2022-04-07");
+    String moveMPAARating = getMPAARating(recommendedEntity.adult ?? false);
+    SharedProvider sharedProvider = Provider.of<SharedProvider>(context);
+    int? id = recommendedEntity.id;
     return Container(
       width: 97.w,
       height: 184.h,
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(4).w,
-          boxShadow:  [
+          boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 3,
             ),
-          ]
-      ),
+          ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,48 +43,70 @@ class RecommendedComponent extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                /// TODO
+                var userId = FirebaseAuth.instance.currentUser?.uid;
+                if(!sharedProvider.moviesList.contains(id)){
+                  sharedProvider.addToWatchList(userId!, id!);
+                }else{
+                  sharedProvider.removeFromWatchList(userId!,id!);
+                }
               },
-              child: Stack(alignment: Alignment.center, children: [
-                SvgPicture.asset(
-                  "asset/icons/add_to_watch_list.svg",
-                  width: 27.w,
-                  height: 36.h,
-                ),
-                Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 11.04.sp,
-                )
-              ]),
+              child: !sharedProvider.moviesList.contains(id)
+                  ? Stack(alignment: Alignment.center, children: [
+                      SvgPicture.asset("asset/icons/add_to_watch_list.svg",
+                          width: 27.w, height: 36.h),
+                      Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 11.04.sp,
+                      )
+                    ])
+                  : Stack(alignment: Alignment.center, children: [
+                      SvgPicture.asset(
+                        "asset/icons/add_to_watch_list.svg",
+                        width: 27.w,
+                        height: 36.h,
+                        colorFilter: ColorFilter.mode(
+                            Theme.of(context).colorScheme.secondary,
+                            BlendMode.srcIn),
+                      ),
+                      Icon(Icons.done, color: Colors.white, size: 11.04.sp)
+                    ]),
             )
           ]),
           SizedBox(
             child: Container(
-              margin: REdgeInsets.only(
-                top: 5.26,
-                left: 6,
-                right: 2
-
-              ),
+              margin: REdgeInsets.only(top: 5.26, left: 6, right: 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SvgPicture.asset("asset/icons/star-2.svg",height: 13.6.h,),
+                      SvgPicture.asset(
+                        "asset/icons/star-2.svg",
+                        height: 13.6.h,
+                      ),
                       SizedBox(width: 2.96.w),
                       Container(
-                        margin: REdgeInsets.only(
-                          top: 3
-                        ),
-                          child: Text(recommendedEntity.voteAverage!.toStringAsFixed(1),style: TextStyle(color: Colors.white,fontSize: 10.sp),)),
+                          margin: REdgeInsets.only(top: 3),
+                          child: Text(
+                            recommendedEntity.voteAverage!.toStringAsFixed(1),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 10.sp),
+                          )),
                     ],
                   ),
-                  Text(recommendedEntity.title??"",style: TextStyle(color: Colors.white,fontSize: 10.sp),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                  Text(
+                    recommendedEntity.title ?? "",
+                    style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
                   SizedBox(height: 2.h),
-                  Text("$moviesYear  $moveMPAARating",style: TextStyle(color: Theme.of(context).colorScheme.onBackground,fontSize: 8.sp)),
+                  Text("$moviesYear  $moveMPAARating",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground,
+                          fontSize: 8.sp)),
                 ],
               ),
             ),
@@ -86,13 +114,13 @@ class RecommendedComponent extends StatelessWidget {
         ],
       ),
     );
-
   }
 
   String extractYearFromDate(String dateString) {
     DateTime dateTime = DateTime.parse(dateString);
     return dateTime.year.toString();
   }
+
   String getMPAARating(bool adult) {
     if (adult) {
       // For adult content

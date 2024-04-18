@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moves_app/core/api/api_manger.dart';
 import 'package:moves_app/core/api/end_points.dart';
-import 'package:moves_app/data/datasource_contract/new_relealeses_datasource_contract.dart';
 import 'package:moves_app/data/models/new_releases_movie_model/NewReleasesMovieResponse.dart';
 
 import '../../core/constant.dart';
+import '../api_datasource_contract/new_relealeses_datasource_contract.dart';
 
 @Injectable(as: NewReleasesDataSourceContract)
 class NewReleasesDataSourceImpl extends NewReleasesDataSourceContract {

@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moves_app/data/datasource_contract/new_relealeses_datasource_contract.dart';
 import 'package:moves_app/domain/entities/movie_entity.dart';
 import 'package:moves_app/domain/repository_contract/new_releases_repository.dart';
+
+import '../api_datasource_contract/new_relealeses_datasource_contract.dart';
 
 @Injectable(as: NewReleasesRepo)
 class NewReleasesRepoImpl extends NewReleasesRepo {

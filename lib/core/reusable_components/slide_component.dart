@@ -1,19 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../domain/entities/movie_entity.dart';
+import '../../presentation/shared_provider/shared_provider.dart';
 
 class SlideComponent extends StatelessWidget {
-  MoviesEntity popularMovieEntity ;
-  SlideComponent({super.key,required this.popularMovieEntity});
+  MoviesEntity popularMovieEntity;
 
-
+  SlideComponent({super.key, required this.popularMovieEntity});
 
   @override
   Widget build(BuildContext context) {
-    String moviesYear =extractYearFromDate(popularMovieEntity.releaseDate??"2022-04-07");
-    String moveMPAARating  = getMPAARating(popularMovieEntity.adult??false);
+    SharedProvider sharedProvider = Provider.of<SharedProvider>(context);
+    int? id = popularMovieEntity.id;
+    String moviesYear =
+        extractYearFromDate(popularMovieEntity.releaseDate ?? "2022-04-07");
+    String moveMPAARating = getMPAARating(popularMovieEntity.adult ?? false);
     return Container(
       width: 412.w,
       height: 289.h,
@@ -24,7 +29,8 @@ class SlideComponent extends StatelessWidget {
           children: [
             Stack(alignment: Alignment.center, children: [
               Image(
-                image: NetworkImage("https://image.tmdb.org/t/p/w500/${popularMovieEntity.backdropPath}"),
+                image: NetworkImage(
+                    "https://image.tmdb.org/t/p/w500/${popularMovieEntity.backdropPath}"),
                 height: 217.h,
                 width: 412.w,
                 fit: BoxFit.fill,
@@ -39,12 +45,12 @@ class SlideComponent extends StatelessWidget {
             ]),
             Container(
               alignment: Alignment.bottomLeft,
-              margin: REdgeInsets.only(top: 14, bottom: 43,left: 230),
+              margin: REdgeInsets.only(top: 14, bottom: 43, left: 230),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    popularMovieEntity.title??"",
+                    popularMovieEntity.title ?? "",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(color: Colors.white, fontSize: 14.sp),
@@ -74,17 +80,34 @@ class SlideComponent extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  /// TODO
+                  var userId = FirebaseAuth.instance.currentUser?.uid;
+                  if(!sharedProvider.moviesList.contains(id)){
+                    sharedProvider.addToWatchList(userId!, id!);
+                  }else{
+                    sharedProvider.removeFromWatchList(userId!,id!);
+                  }
                 },
-                child: Stack(alignment: Alignment.center, children: [
-                  SvgPicture.asset("asset/icons/add_to_watch_list.svg",
-                      width: 27.w, height: 36.h),
-                  Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 11.04.sp,
-                  )
-                ]),
+                child: !sharedProvider.moviesList.contains(id)
+                    ? Stack(alignment: Alignment.center, children: [
+                        SvgPicture.asset("asset/icons/add_to_watch_list.svg",
+                            width: 27.w, height: 36.h),
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 11.04.sp,
+                        )
+                      ])
+                    : Stack(alignment: Alignment.center, children: [
+                        SvgPicture.asset(
+                          "asset/icons/add_to_watch_list.svg",
+                          width: 27.w,
+                          height: 36.h,
+                          colorFilter: ColorFilter.mode(
+                              Theme.of(context).colorScheme.secondary,
+                              BlendMode.srcIn),
+                        ),
+                        Icon(Icons.done, color: Colors.white, size: 11.04.sp)
+                      ]),
               )
             ])),
       ]),
@@ -95,6 +118,7 @@ class SlideComponent extends StatelessWidget {
     DateTime dateTime = DateTime.parse(dateString);
     return dateTime.year.toString();
   }
+
   String getMPAARating(bool adult) {
     if (adult) {
       // For adult content
@@ -106,5 +130,4 @@ class SlideComponent extends StatelessWidget {
       // You could use 'PG' for general audiences or 'G' for all ages depending on content
     }
   }
-
 }
