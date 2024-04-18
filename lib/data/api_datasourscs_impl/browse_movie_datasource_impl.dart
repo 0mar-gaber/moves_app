@@ -4,7 +4,7 @@ import 'package:moves_app/core/api/api_manger.dart';
 import 'package:moves_app/data/models/browse_movie_model/browse_movie_response.dart';
 import '../../core/api/end_points.dart';
 import '../../core/constant.dart';
-import '../datasource_contract/browse_movie_datasource_contract.dart';
+import '../api_datasource_contract/browse_movie_datasource_contract.dart';
 
 @Injectable(as: BrowseMovieDatasourceContract)
 class BrowseMovieDatasourceImpl extends BrowseMovieDatasourceContract {

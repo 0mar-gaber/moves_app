@@ -6,7 +6,7 @@ flutter_native_splash:
 
 
   android_12:
-    image: asset/image/logo_moveis.png
+    image: asset/image/logo moveis12.png
     icon_background_color: "#121312"
-    image_dark: asset/image/logo_moveis.png
+    image_dark: asset/image/logo moveis12.png
     icon_background_color_dark: "#121312"

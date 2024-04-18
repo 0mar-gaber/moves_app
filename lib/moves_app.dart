@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moves_app/presentation/screens/category_screen/category_screen.dart';
@@ -31,7 +32,9 @@ class MovesApp extends StatelessWidget {
           RegisterScreen.route :(context) =>  const RegisterScreen(),
 
         },
-        initialRoute:LoginScreen.route,
+        // initialRoute: LoginScreen.route,
+        initialRoute:FirebaseAuth.instance.currentUser==null? LoginScreen.route:HomeScreen.route,
+
         theme: AppTheme.theme,
       ),
     );

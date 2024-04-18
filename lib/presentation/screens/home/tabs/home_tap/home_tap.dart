@@ -6,6 +6,8 @@ import 'package:moves_app/core/DI/di.dart';
 import 'package:moves_app/presentation/screens/home/tabs/home_tap/view_models/new_releases_view_model.dart';
 import 'package:moves_app/presentation/screens/home/tabs/home_tap/view_models/recommneded_view_model.dart';
 import 'package:moves_app/presentation/screens/home/tabs/home_tap/view_models/top_slide_view_model.dart';
+import 'package:moves_app/presentation/shared_provider/shared_provider.dart';
+import 'package:provider/provider.dart';
 import '../../../../../core/reusable_components/new_releases_component.dart';
 import '../../../../../core/reusable_components/recommended_component.dart';
 import '../../../../../core/reusable_components/slide_component.dart';
