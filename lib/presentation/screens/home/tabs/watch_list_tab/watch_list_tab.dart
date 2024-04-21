@@ -8,7 +8,6 @@ import 'package:moves_app/presentation/screens/home/tabs/watch_list_tab/watch_li
 import 'package:moves_app/presentation/screens/movie_details_screen/movie_details_screen.dart';
 
 import '../../../../../core/reusable_components/movie_component.dart';
-import '../../../../../domain/entities/movie_entity.dart';
 
 class WatchListTab extends StatelessWidget {
   const WatchListTab({super.key});
@@ -78,7 +77,7 @@ class WatchListTab extends StatelessWidget {
                           Navigator.pushNamed(context, MovieDetails.route,arguments: moviesList[index]);
                         },
                           child: MovieWidget(moviesEntity: moviesList[index])),
-                    itemCount: moviesList.length??0,
+                    itemCount: moviesList.length,
                   );
                   }
                 }
